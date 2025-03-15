@@ -1,6 +1,18 @@
-# Finsta TypeScript Project
+# Finsta - Instagram Watcher
 
-A modern TypeScript project setup with best practices for development.
+A professional Instagram monitoring tool that automatically tracks account followings, detects events from posts, and provides analytics through a web dashboard.
+
+## 🚀 Project Overview
+
+Finsta is a comprehensive Instagram monitoring system designed to help users stay informed about events, conferences, and opportunities shared by accounts they follow. The project implements a sophisticated scraping and analysis pipeline that:
+
+1. **Track Instagram Followings**: Automatically monitors Instagram accounts you follow and tracks changes over time
+2. **Detect Events**: Uses AI-powered analysis to identify events from Instagram posts with high accuracy
+3. **Dashboard Visualization**: Presents findings through an intuitive Next.js dashboard with real-time statistics
+4. **Scheduled Processing**: Runs tasks on customizable schedules to maintain up-to-date information
+5. **Efficient Operation**: Implements robust caching to minimize API costs and improve performance
+
+Perfect for professionals, researchers, or anyone who wants to keep track of activities and events within their network without constantly checking Instagram.
 
 ## Features
 
@@ -13,6 +25,32 @@ A modern TypeScript project setup with best practices for development.
 - Instagram data fetching functionality
 - Supabase database integration
 - Event detection with OpenAI
+
+## Technical Architecture
+
+The project follows a modular architecture that combines several key components:
+
+### Data Collection Layer
+- **Instagram Scraper**: Uses `@aduptive/instagram-scraper` to safely fetch data from Instagram without violating terms of service
+- **Followings Tracker**: Monitors accounts you follow and stores historical data to track changes over time
+- **Post Collector**: Retrieves posts from followed accounts for analysis
+
+### Processing Layer
+- **Event Detector**: Analyzes post content using OpenAI's GPT model to identify events with high confidence
+- **Scheduler**: Coordinates automated data collection and processing at configurable intervals
+- **Cache System**: Implements in-memory caching to reduce redundant API calls and database queries
+
+### Storage Layer
+- **Supabase Database**: Stores all data in a properly structured relational database
+- **JSON Export**: Provides data export capabilities for offline analysis or backup
+
+### Presentation Layer
+- **Next.js Dashboard**: Web interface built with Next.js and TailwindCSS for visualizing statistics and events
+- **API Endpoints**: RESTful endpoints to fetch data for the dashboard components
+
+### Service Management
+- **Process Management**: Scripts to start, stop, and monitor services
+- **Logging System**: Comprehensive logging to troubleshoot and monitor system health
 
 ## Prerequisites
 
@@ -167,9 +205,9 @@ This project implements an in-memory caching system to reduce database queries, 
 
 | Data Type            | TTL (Time-to-Live) | Rationale                                   |
 |----------------------|--------------------|---------------------------------------------|
-| Instagram Followings | 10 minutes         | Balance between freshness and performance   |
-| Followings Statistics| 5 minutes          | Dashboard needs relatively fresh data       |
-| Historical Data      | 30 minutes         | Historical data changes infrequently        |
+| Instagram Followings | 3h 55m             | Expires 5 minutes before next follower check |
+| Followings Statistics| 1h 55m             | Expires 5 minutes before next post check    |
+| Historical Data      | 3h 55m             | Expires 5 minutes before next follower check |
 | OpenAI Post Analysis | 7 days             | Post content doesn't change after posting   |
 
 #### How Caching Works
@@ -238,6 +276,73 @@ npm run instagram
 # Advanced post fetching with parameters
 npm run instagram-fetch -- --max-users=10 --posts-per-user=3
 ```
+
+## Deployment & Production Use
+
+### System Requirements
+
+For optimal performance in production:
+- **Recommended**: 1GB RAM, 1 CPU core
+- **Storage**: At least 500MB free space for the application and logs
+- **Network**: Stable internet connection for reliable Instagram access
+- **Node.js**: v18.0.0 or higher (LTS version recommended)
+
+### Setup as System Service
+
+For continuous operation, you can set up the application as a system service:
+
+#### Using systemd (Linux)
+
+1. Copy the service definition file:
+```bash
+sudo cp instagram-scheduler.service /etc/systemd/system/
+```
+
+2. Enable and start the service:
+```bash
+sudo systemctl enable instagram-scheduler
+sudo systemctl start instagram-scheduler
+```
+
+3. Check service status:
+```bash
+sudo systemctl status instagram-scheduler
+```
+
+#### Using launchd (macOS)
+
+1. Create a plist file in `~/Library/LaunchAgents/com.user.instagram-watcher.plist`
+2. Load the service:
+```bash
+launchctl load ~/Library/LaunchAgents/com.user.instagram-watcher.plist
+```
+
+### Environment Setup
+
+For production deployment, set these additional environment variables:
+```
+NODE_ENV=production
+LOG_LEVEL=info
+```
+
+### Monitoring
+
+Monitor application health using:
+```bash
+# View service logs
+journalctl -u instagram-scheduler
+
+# Check application-specific logs
+tail -f logs/scheduler.log
+```
+
+### Updating
+
+To update the application:
+1. Pull the latest changes: `git pull`
+2. Install dependencies: `npm install`
+3. Rebuild: `npm run build`
+4. Restart the service: `sudo systemctl restart instagram-scheduler`
 
 ## Project Structure
 

@@ -15,8 +15,8 @@ interface FollowingsStats {
 }
 
 // Cache TTLs (in seconds)
-const STATS_CACHE_TTL = 5 * 60; // 5 minutes
-const HISTORY_CACHE_TTL = 30 * 60; // 30 minutes
+const STATS_CACHE_TTL = 60 * 60 * 2 - 60 * 5; // 1 hour 55 minutes - expires 5 minutes before post check
+const HISTORY_CACHE_TTL = 60 * 60 * 4 - 60 * 5; // 3 hours 55 minutes - expires 5 minutes before follower check
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'GET') {

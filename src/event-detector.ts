@@ -14,7 +14,7 @@ dotenv.config();
 const MAX_RETRIES = 3;
 const RETRY_DELAY = 5000; // 5 seconds
 const MIN_CONFIDENCE_THRESHOLD = 90;
-const FOLLOWINGS_CACHE_TTL = 60 * 10; // 10 minutes
+const FOLLOWINGS_CACHE_TTL = 60 * 60 * 4 - 60 * 5; // 3 hours 55 minutes - expires 5 minutes before next follower check
 const OPENAI_ANALYSIS_CACHE_TTL = 60 * 60 * 24 * 7; // 7 days (analysis results don't change often)
 
 /**

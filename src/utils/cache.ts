@@ -1,8 +1,8 @@
 import NodeCache from 'node-cache';
 
 // Default cache TTL and check period (in seconds)
-const DEFAULT_TTL = 60 * 5; // 5 minutes
-const CHECK_PERIOD = 60; // Check for expired keys every minute
+const DEFAULT_TTL = 60 * 115; // 115 minutes - expires 5 minutes before next job run
+const CHECK_PERIOD = 60 * 120; // Check for expired keys every 2 hours
 
 // Create a singleton cache instance with default options
 const cache = new NodeCache({
