@@ -64,8 +64,8 @@ The project follows a modular architecture that combines several key components:
 
 ```bash
 # Clone the repository
-git clone <repository-url>
-cd finsta
+git clone https://github.com/aaaanis/instagram-watcher.git
+cd instagram-watcher
 
 # Install dependencies
 npm install
