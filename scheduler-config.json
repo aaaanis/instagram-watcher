@@ -1,0 +1,9 @@
+{
+  "followingsMinIntervalHours": 3.5,
+  "followingsMaxIntervalHours": 4.5,
+  "eventDetectorIntervalHours": 2,
+  "postsPerAccount": 3,
+  "minConfidenceThreshold": 90,
+  "maxRetries": 3,
+  "retryDelay": 5000
+}
