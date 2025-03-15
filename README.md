@@ -1,15 +1,15 @@
-# Finsta - Instagram Watcher
+# Instagram Watcher Tool
 
-A professional Instagram monitoring tool that automatically tracks account followings, detects events from posts, and provides analytics through a web dashboard.
+This project enables you to monitor the latest posts from specified Instagram accounts using a watcher account. It automatically fetches the three most recent posts from these accounts and analyzes both the captions and images using OpenAI's GPT-4o model. The analysis determines whether the posts relate to a user-defined topic of interest. For example, I used it to scrape details about conferences and seminars from organizational accounts, but it’s versatile enough to track brand mentions, event updates, or content trends across various industries.
 
 ## 🚀 Project Overview
 
-Finsta is a comprehensive Instagram monitoring system designed to help users stay informed about events, conferences, and opportunities shared by accounts they follow. The project implements a sophisticated scraping and analysis pipeline that:
+This tool is a comprehensive Instagram monitoring system designed to help users stay informed about events, conferences, and opportunities shared by accounts they follow. The project implements a sophisticated scraping and analysis pipeline that:
 
 1. **Track Instagram Followings**: Automatically monitors Instagram accounts you follow and tracks changes over time
 2. **Detect Events**: Uses AI-powered analysis to identify events from Instagram posts with high accuracy
 3. **Dashboard Visualization**: Presents findings through an intuitive Next.js dashboard with real-time statistics
-4. **Scheduled Processing**: Runs tasks on customizable schedules to maintain up-to-date information
+4. **Scheduled Processing**: Runs tasks on customizable schedules to maintain up-to-date information while avoiding Instagram detection
 5. **Efficient Operation**: Implements robust caching to minimize API costs and improve performance
 
 Perfect for professionals, researchers, or anyone who wants to keep track of activities and events within their network without constantly checking Instagram.
