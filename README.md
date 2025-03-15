@@ -1,4 +1,4 @@
-# Instagram Watcher Tool
+# Instagram Monitor Tool
 
 This project enables you to monitor the latest posts from specified Instagram accounts using a watcher account. It automatically fetches the three most recent posts from these accounts and analyzes both the captions and images using OpenAI's GPT-4o model. The analysis determines whether the posts relate to a user-defined topic of interest. For example, I used it to scrape details about conferences and seminars from organizational accounts, but it’s versatile enough to track brand mentions, event updates, or content trends across various industries.
 
